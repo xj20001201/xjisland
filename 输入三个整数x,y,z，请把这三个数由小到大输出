@@ -1,0 +1,26 @@
+#include<stdio.h>
+
+//输入三个整数x,y,z，请把这三个数由小到大输出
+
+void main()
+{
+	
+	int str[3];
+	int i,j;int max;
+	printf("请输入三个整数（例：1999 9 12）");
+
+	for(i=0;i<=2;i++)
+	{		scanf("%d",&str[i]);
+	}
+	for(j=0;j<=2;j++)
+		for(i=0;i<=1;i++)
+		{	if(str[i]>str[i+1])
+		{   max=str[i];
+			str[i]=str[i+1];
+			str[i+1]=max;
+		}
+
+		}
+	printf("%d<%d<%d",str[0],str[1],str[2]);
+		
+}
