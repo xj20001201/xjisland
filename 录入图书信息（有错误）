@@ -1,0 +1,111 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct Book
+{
+	char title[60];
+	char author[40];
+	struct Book *next;
+};
+//定义了书这个结构体
+
+
+
+
+
+
+void getinput(struct Book *book)
+{
+
+	printf("请输入书名：");
+	scanf("%s", book ->title);
+	printf("请输入作者：");
+	scanf("%s", book ->author);
+
+}
+//需要输入的东西
+
+
+
+
+
+
+
+void addBook(struct Book **library)
+{
+	struct Book *book,*temp;
+
+	book = (struct Book *)malloc(sizeof(struct Book));
+	if(book = NULL)
+	{
+		printf("内存分配失败了啊—.—\n");
+		exit(1);
+	
+	};//申请内存空间
+
+	getinput(book);//获得了输入给book的东西
+
+	if(*library != NULL)
+	{
+		temp = *library;//如果library不等于空，用临时变量保存地址library所指向的内容（library里的第一本书）
+		*library =book;
+		book ->next = temp;
+	}
+	else
+	{
+		*library = book;
+		book -> next = NULL;
+	}
+
+}
+
+
+
+
+
+
+
+void printLibrary(struct Book *library)
+{
+	struct Book *book;
+	int count = 1;
+	 
+	book = library;
+	while (book != NULL)
+	{
+		printf("序号%d:",count);
+		printf("书名%s:",book ->title);
+		printf("作者%s:",book ->author);
+		book = book->next;
+		count++;
+	}
+}
+
+
+
+
+
+void releaseLibrary(struct Book *Library)
+{
+	while (library != NULL)
+	{
+		free(library);
+		library = library->next;
+	}
+
+
+}
+
+
+
+
+int main(void)
+{   
+	struct Book *library = NULL;
+	addBook(&library);
+
+	return 0;
+};
+
+
